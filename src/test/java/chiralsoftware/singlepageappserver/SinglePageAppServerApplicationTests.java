@@ -1,4 +1,4 @@
-package chiralsoftware.spa.SinglePageAppServer;
+package chiralsoftware.singlepageappserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package chiralsoftware.spa.SinglePageAppServer;
+package chiralsoftware.singlepageappserver;
 
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Value;

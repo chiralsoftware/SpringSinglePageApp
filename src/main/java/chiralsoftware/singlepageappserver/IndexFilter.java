@@ -1,4 +1,4 @@
-package chiralsoftware.spa.SinglePageAppServer;
+package chiralsoftware.singlepageappserver;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;

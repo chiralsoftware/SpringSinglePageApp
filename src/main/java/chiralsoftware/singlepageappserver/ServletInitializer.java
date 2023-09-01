@@ -1,4 +1,4 @@
-package chiralsoftware.spa.SinglePageAppServer;
+package chiralsoftware.singlepageappserver;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
