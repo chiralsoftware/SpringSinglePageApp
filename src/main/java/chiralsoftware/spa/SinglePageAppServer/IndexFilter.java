@@ -12,15 +12,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 import java.io.IOException;
 import static java.util.Collections.EMPTY_SET;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Logger;
+import static java.util.stream.Collectors.toCollection;
+import static java.util.stream.Collectors.toUnmodifiableSet;
 
 /**
  * A filter to map /app/* to the same file
  */
 @WebFilter("/*")
-public class IndexFilter implements Filter {
+public final class IndexFilter implements Filter {
 
     private static final Logger LOG = Logger.getLogger(IndexFilter.class.getName());
 
@@ -48,11 +50,13 @@ public class IndexFilter implements Filter {
              staticFiles = EMPTY_SET;
              return;
          }
-         final Set<String> set = new HashSet<>();
-         for(String s : staticFileString.split(",")) {
-             set.add(s.trim());
-         }
-         staticFiles = Set.copyOf(set);
+         staticFiles = Set.of(staticFileString.split(",")).stream().map(String::trim).collect(toUnmodifiableSet());
+         final Set<String> pathsWithoutSlash = 
+                 staticFiles.stream().filter(s -> ! s.startsWith("/")).collect(toCollection(TreeSet::new));
+         
+         if(! pathsWithoutSlash.isEmpty()) 
+             LOG.warning("The following paths do not have a leading slash, which is probably a configuration mistake: " + pathsWithoutSlash);
+         
          LOG.info("The following files are defined as static files and will be served as normal files: " + staticFiles);
     }
     

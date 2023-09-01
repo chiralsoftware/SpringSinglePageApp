@@ -28,6 +28,13 @@ public class WebConfiguration implements WebMvcConfigurer {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        if(base == null || base.isBlank()) {
+            LOG.warning("The base property was null or blank. this isn't going to work.");
+            return;
+        }
+        if(! (base.startsWith("file:") || base.startsWith("classpath:"))) {
+            LOG.warning("the base specification is probably a mistake because it should start with file: or classpath:");
+        }
         registry.addResourceHandler("/*").addResourceLocations(base);
     }
     
