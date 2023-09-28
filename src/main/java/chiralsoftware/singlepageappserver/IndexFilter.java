@@ -26,7 +26,7 @@ public final class IndexFilter implements Filter {
 
     private static final Logger LOG = Logger.getLogger(IndexFilter.class.getName());
 
-    /** Usually a value like /app/index.html . This isn't a file path - it's a URI relative to the context */
+    /** Usually a value like /index.html . This isn't a file path - it's a URI relative to the context */
     private String indexLocation = "/index.html"; 
     
     /** A list of paths which will be chained forward as they are. These are static files that are not mapped to the single page.
@@ -76,7 +76,7 @@ public final class IndexFilter implements Filter {
         final String relativePath = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
         LOG.finest("the relative path is: " + relativePath);
 
-        if(staticFiles.stream().anyMatch(f -> relativePath.startsWith(f))) {
+        if(staticFiles.stream().anyMatch(relativePath::startsWith)) {
             LOG.finest("it's a static file so chain forward");
             chain.doFilter(request, response);
             return;
