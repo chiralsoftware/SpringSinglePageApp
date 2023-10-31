@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context docBase="/opt/web/SinglePageAppServer-0.0.1-SNAPSHOT.war" >
+
+  <!-- We can also add to the web.xml using this file:
+         altDDName="external-web.xml"
+  -->
+
+  <!-- Alternatively, all of these could be in a Spring external properties file, like:
+  <Parameter name="spring.config.import" value="optional:file:/opt/web/single.properties"
+	     override="true"/>
+-->
+  <Parameter name="staticFiles"
+	     value="/assets,/site.webmanifest,/favicon,/my_manifest.json"
+	     override="true"/>
+  <Parameter name="indexLocation" value="/index.html" override="true"/>
+  <Parameter name="base" value="file:/opt/web/SinglePageApp/"
+	     override="true"/>
+
+  
+</Context>
