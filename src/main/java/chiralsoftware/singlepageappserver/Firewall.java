@@ -15,7 +15,7 @@ public class Firewall {
 
     @Bean
     public StrictHttpFirewall httpFirewall() {
-        StrictHttpFirewall firewall = new StrictHttpFirewall();
+        final StrictHttpFirewall firewall = new StrictHttpFirewall();
         firewall.setAllowedHttpMethods(Set.of(GET.name(), HEAD.name()));
         return firewall;
     }
